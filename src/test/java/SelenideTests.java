@@ -30,4 +30,16 @@ public class SelenideTests {
         dynamicContentPage.checkTextBlocksExist();
         dynamicContentPage.checkTextBlocksHaveText();
     }
+
+    @Test
+    public void checkTextBlocksChange() {
+        dynamicContentPage.openPage();
+        dynamicContentPage.checkChangeText();
+    }
+
+    @Test
+    public void checkTextBlocksChangeInStaticMode() {
+        dynamicContentPage.openPageInStaticMode();
+        dynamicContentPage.checkChangeOnlyThirdBlock();
+    }
 }

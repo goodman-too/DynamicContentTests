@@ -4,15 +4,16 @@ import org.testng.annotations.*;
 
 public class SeleniumTests {
 
-    WebDriver driver = Driver.getChromeDriver();
+    WebDriver driver;
     DynamicContentPageSelenium dynamicContentPage;
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
+        driver = Driver.getChromeDriver();
         dynamicContentPage = new DynamicContentPageSelenium(driver);
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
@@ -28,5 +29,17 @@ public class SeleniumTests {
         dynamicContentPage.openPage();
         dynamicContentPage.checkTextBlocksExist();
         dynamicContentPage.checkTextBlocksHaveText();
+    }
+
+    @Test
+    public void checkTextBlocksChange() {
+        dynamicContentPage.openPage();
+        dynamicContentPage.checkChangeText();
+    }
+
+    @Test
+    public void checkOnlyThirdTextBlockChange() {
+        dynamicContentPage.openPageInStaticMode();
+        dynamicContentPage.checkChangeOnlyThirdBlock();
     }
 }
